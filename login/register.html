@@ -5,23 +5,36 @@
 		<title>GSU Books Exchange</title>
 	</head>
 	<body>
-		<form action="register.php" method="post">
+		<form action="register.php" method="post" id="registrationForm">
 			Email:
-			<input type="text" name="email" />
+			<input type="text" name="email" class="nonEmpty" />
 			<br/>
 			First Name:
-			<input type="text" name="firstName" />
+			<input type="text" name="firstName" class="nonEmpty" />
 			<br/>
 			Last Name:
-			<input type="text" name="lastName" />
+			<input type="text" name="lastName" class="nonEmpty" />
 			<br/>
 			Password:
-			<input type="text" name="password" />
+			<input type="text" name="password" class="nonEmpty" />
 			<br/>
 			Confirm Password:
-			<input type="password" name="confirmPassword" />
+			<input type="password" name="confirmPassword" class="nonEmpty" />
 			<br/>
-			<input type="button" onclick="submitFrom()" 
+			<input type="button" onclick="submitFrom()" value="Submit" />
 		</form>
+		<a href="login.html">Back</a>
 	</body>
+	<script>
+		function submitFrom() {
+			var inputs = document.getElementsByTagName("input");
+			for (var input in inputs) {
+				if (input.type == "text" || input.type == "password") {
+					if (input.trim().value == "") {
+						alert("bruh");
+					}
+				}
+			}
+		}
+	</script>
 </html>
