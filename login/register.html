@@ -16,7 +16,7 @@
 			<input type="text" name="lastName" class="nonEmpty" />
 			<br/>
 			Password:
-			<input type="text" name="password" class="nonEmpty" />
+			<input type="password" name="password" class="nonEmpty" />
 			<br/>
 			Confirm Password:
 			<input type="password" name="confirmPassword" class="nonEmpty" />
@@ -28,13 +28,23 @@
 	<script>
 		function submitFrom() {
 			var inputs = document.getElementsByTagName("input");
-			for (var input in inputs) {
-				if (input.type == "text" || input.type == "password") {
-					if (input.trim().value == "") {
-						alert("bruh");
-					}
+			for (var i = 0; i < inputs.length; i++) {
+				var input = inputs[i];
+				if (input.parentNode.id == "registrationForm" && input.value.trim() == "") {
+					alert("Please fill in all of the fields.");
+					return;
 				}
 			}
+			if (document.getElementsByName("confirmPassword")[0].value
+					!= document.getElementsByName("password")[0].value) {
+				alert("Confirmation password does not match.");
+				return;
+			}
+			if (!document.getElementsByName("password")[0].value.match("[A-Z a-z 0-9 -_]")) {
+				alert("Password cannot contain special characters.");
+				return;
+			}
+//			document.getElementById("registrationForm").submit();
 		}
 	</script>
 </html>
