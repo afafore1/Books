@@ -7,7 +7,13 @@
 	<body>
 		<form action="login.php" method="post">
 			Email:
-			<input type="text" 
+			<input type="text" name="email" />
+			<br/>
+			Password:
+			<input type="password" name="password" />
+			<br/>
+			<input type="button" onclick="submitForm()" value="Login" />
 		</form>
+		<a href="register.html">Register</a>
 	</body>
 </html>
