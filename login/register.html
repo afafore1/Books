@@ -40,11 +40,11 @@
 				alert("Confirmation password does not match.");
 				return;
 			}
-			if (!document.getElementsByName("password")[0].value.match("[A-Z a-z 0-9 -_]")) {
+			if (document.getElementsByName("password")[0].value.match("[^A-Za-z0-9]")) {
 				alert("Password cannot contain special characters.");
 				return;
 			}
-//			document.getElementById("registrationForm").submit();
+			document.getElementById("registrationForm").submit();
 		}
 	</script>
 </html>
