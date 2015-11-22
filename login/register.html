@@ -7,44 +7,50 @@
 	<body>
 		<form action="register.php" method="post" id="registrationForm">
 			Email:
-			<input type="text" name="email" class="nonEmpty" />
+			<input type="text" name="email" />
 			<br/>
 			First Name:
-			<input type="text" name="firstName" class="nonEmpty" />
+			<input type="text" name="firstName" />
 			<br/>
 			Last Name:
-			<input type="text" name="lastName" class="nonEmpty" />
+			<input type="text" name="lastName" />
 			<br/>
 			Password:
-			<input type="password" name="password" class="nonEmpty" />
+			<input type="password" name="password" />
 			<br/>
 			Confirm Password:
-			<input type="password" name="confirmPassword" class="nonEmpty" />
+			<input type="password" name="confirmPassword" />
 			<br/>
-			<input type="button" onclick="submitFrom()" value="Submit" />
+			<input type="button" onclick="submitForm()" value="Submit" />
 		</form>
 		<a href="login.html">Back</a>
-	</body>
-	<script>
-		function submitFrom() {
-			var inputs = document.getElementsByTagName("input");
-			for (var i = 0; i < inputs.length; i++) {
-				var input = inputs[i];
-				if (input.parentNode.id == "registrationForm" && input.value.trim() == "") {
-					alert("Please fill in all of the fields.");
+		<script>
+			function submitForm() {
+				var inputs = document.getElementsByTagName("input");
+				for (var i = 0; i < inputs.length; i++) {
+					var input = inputs[i];
+					if (input.parentNode.id == "registrationForm") {
+						if (input.value.trim() == "") {
+							alert("Please fill in all of the fields.");
+							return;
+						}
+						if (input.value.match("[<>;\\s]")) {
+							alert("Please do not use special characters.");
+							return;
+						}
+					}
+				}
+				if (!document.getElementsByName("email")[0].value.match(".+@([A-Za-z]+\\.)+[A-Za-z]+$")) {
+					alert("Email is invalid");
+					return;				
+				}
+				if (document.getElementsByName("confirmPassword")[0].value
+						!= document.getElementsByName("password")[0].value) {
+					alert("Confirmation password does not match.");
 					return;
 				}
+				document.getElementById("registrationForm").submit();
 			}
-			if (document.getElementsByName("confirmPassword")[0].value
-					!= document.getElementsByName("password")[0].value) {
-				alert("Confirmation password does not match.");
-				return;
-			}
-			if (document.getElementsByName("password")[0].value.match("[^A-Za-z0-9]")) {
-				alert("Password cannot contain special characters.");
-				return;
-			}
-			document.getElementById("registrationForm").submit();
-		}
-	</script>
+		</script>
+	</body>
 </html>
