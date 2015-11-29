@@ -5,7 +5,7 @@
 		<title>GSU Books Exchange</title>
 	</head>
 	<body>
-		<form action="login.php" method="post">
+		<form action="login.php" method="post" id="loginForm">
 			Email:
 			<input type="text" name="email" />
 			<br/>
@@ -15,5 +15,20 @@
 			<input type="button" onclick="submitForm()" value="Login" />
 		</form>
 		<a href="register.html">Register</a>
+		<script>
+			function submitForm() {
+				var inputs = document.getElementsByTagName("input");
+				for (var i = 0; i < inputs.length; i++) {
+					var input = inputs[i];
+					if (input.parentNode.id == "registrationForm") {
+						if (input.value.trim() == "") {
+							alert("Please fill in all of the fields.");
+							return;
+						}
+					}
+				}
+				document.getElementById("loginForm").submit();
+			}
+		</script>
 	</body>
 </html>
